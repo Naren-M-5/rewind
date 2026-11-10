@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071d49">
+  <title>REWIND · Payment investigation desk</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Application navigation">
+    <a class="brand" href="/" aria-label="REWIND home"><span class="brandmark">R//</span><span>REWIND</span></a>
+    <div class="workspace">PAYMENT INVESTIGATION DESK</div>
+    <div class="nav active"><span class="status-dot"></span><span id="nav-mode">Recovery ledger</span></div>
+    <div class="sidebar-bottom"><button id="settings" class="sidebar-button">Connection settings</button></div>
+  </aside>
+
+  <main>
+    <header><div class="breadcrumb"><b>REWIND</b><span>/</span> Investigation desk</div><div class="header-right"><span id="mode" class="badge">Connecting</span><span class="avatar">NM</span></div></header>
+    <div class="content">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> AI-POWERED PAYMENT RECOVERY</div>
+          <h1 id="hero-title">Every payment leaves<br><span>an evidence trail.</span></h1>
+          <p>REWIND reconstructs ambiguous PayPal outcomes, finds conflicting evidence, and recovers safely—without charging twice.</p>
+          <div class="hero-actions"><button id="refresh" class="button primary">Refresh evidence <span>↻</span></button><div class="safety-proof"><b>◆</b><span><strong>Policy protected</strong><small>AI advises. Verified state authorizes.</small></span></div></div>
+        </div>
+        <div class="hero-visual" aria-label="Payment, merchant, and delivery evidence converge for AI reconciliation">
+          <div class="visual-glow"></div>
+          <div class="flow-node provider"><span class="node-icon">$</span><div><small>PROVIDER</small><strong>Payment truth</strong></div><i>01</i></div>
+          <div class="flow-node merchant"><span class="node-icon">◇</span><div><small>MERCHANT</small><strong>Work evidence</strong></div><i>02</i></div>
+          <div class="flow-node buyer"><span class="node-icon">✓</span><div><small>BUYER</small><strong>Delivery proof</strong></div><i>03</i></div>
+          <div class="flow-line one"></div><div class="flow-line two"></div>
+          <div class="ai-core"><span>AI</span><strong>RECONCILE</strong><small>conflict-aware</small></div>
+          <div class="visual-caption"><span></span> Evidence before action</div>
+        </div>
+      </section>
+
+      <div id="disclosure" class="disclosure" role="status"><span class="pulse"></span><span>Connecting to recovery engine…</span></div>
+
+      <section class="metrics" aria-label="Recovery metrics">
+        <article><div><span class="metric-label">Total tasks</span><span class="metric-icon">↗</span></div><strong id="count">0</strong><small>Persistent task journal</small></article>
+        <article><div><span class="metric-label">Duplicate attempts blocked</span><span class="metric-icon">◇</span></div><strong id="blocked">0</strong><small>Task-level payment protection</small></article>
+        <article><div><span class="metric-label">Results recovered</span><span class="metric-icon">↶</span></div><strong id="delivered">0</strong><small>Delivered without a second charge</small></article>
+        <article><div><span class="metric-label">Confirmed refunds</span><span class="metric-icon">✓</span></div><strong id="refunded">0</strong><small>Provider-confirmed completion</small></article>
+      </section>
+
+      <section class="lab" aria-labelledby="lab-title">
+        <div class="lab-heading"><div><span class="lab-icon">FAULT</span><div><h2 id="lab-title">Controlled incident generator</h2><p>Create a reproducible failure and follow the evidence trail.</p></div></div><span class="badge neutral">LOCAL FAULT BOUNDARY</span></div>
+        <div class="lab-body"><label class="scenario-picker" for="scenario"><span>INCIDENT PROFILE</span><select id="scenario"><option value="capture_timeout">01 · Capture succeeds, response disappears</option><option value="delivery_loss">02 · Work completed, result never arrives</option><option value="true_failure">03 · Payment succeeds, work fails</option></select></label><div class="lab-controls"><button id="run" class="button primary">Open investigation <span>→</span></button><button id="new" class="button outline">Blank case</button></div></div>
+        <div class="lab-foot"><p id="lab-note" class="lab-note">One-click rehearsal uses the local emulator. All generated IDs begin with SIM-.</p><div class="mini-flow" aria-label="Investigation flow"><span><b>1</b> Inject</span><i>→</i><span><b>2</b> Observe</span><i>→</i><span><b>3</b> Reconcile</span></div></div>
+      </section>
+
+      <div class="operations">
+        <section class="tasks-panel panel" aria-labelledby="queue-title">
+          <div class="panel-heading"><div><span class="panel-kicker">CASE INBOX</span><h2 id="queue-title">Investigation queue</h2></div><span id="task-total" class="pill">0</span></div>
+          <div id="tasks" class="task-list"><div class="empty"><span>INBOX ZERO</span><strong>No cases yet.</strong><small>Open an incident profile to begin.</small></div></div>
+        </section>
+        <section class="detail-panel panel" aria-labelledby="case-title">
+          <div class="panel-heading case-heading"><div><span class="panel-kicker">ACTIVE INVESTIGATION</span><h2 id="case-title">Case file</h2><span id="task-label" class="mono muted">Select a case</span></div><button id="export" class="text-button" disabled>Export evidence <span>↗</span></button></div>
+          <div id="detail-empty" class="detail-empty"><div class="empty-orbit"><span>R//</span><i></i><i></i></div><h3>Select a case to inspect.</h3><p>Provider truth, merchant execution, and delivery proof remain separate<br>until the evidence establishes an outcome.</p><div class="empty-principles"><span><b>01</b> Reconcile before retry</span><span><b>02</b> Cite every conclusion</span><span><b>03</b> Never charge twice</span></div></div>
+          <div id="detail" hidden>
+            <div id="case-progress" class="case-progress"></div>
+            <div id="state" class="state-grid"></div>
+            <div id="outcome" class="outcome" hidden></div>
+            <div class="detail-actions" aria-label="Case actions"><span class="action-label">CASE ACTIONS</span><button data-action="order">1. Create order</button><button id="approve" hidden>Approve in sandbox ↗</button><button data-action="capture">2. Capture</button><button data-action="drop">Drop response</button><button data-action="reconcile">Reconcile</button><button data-action="merchant">3. Run merchant</button><button data-action="diagnose">4. Diagnose</button><button data-action="recover">5. Recover</button><button id="artifact" hidden>Open result ↗</button></div>
+            <div class="detail-columns">
+              <div class="timeline-column"><div class="section-label"><span>SIGNED EVENT JOURNAL</span><span id="event-count"></span></div><ol id="timeline" class="timeline"></ol></div>
+              <div class="diagnosis-column"><div class="section-label"><span>AI EVIDENCE MEMO</span><span>ADVISORY</span></div><div id="diagnosis" class="diagnosis-card"></div><div class="section-label objects-label"><span>PAYMENT OBJECTS</span><span>PROVIDER IDS</span></div><dl id="objects" class="objects"></dl><div class="evidence-input"><label for="message">Add untrusted merchant claim</label><textarea id="message" placeholder="Paste a merchant message or conflicting delivery log…" maxlength="4000"></textarea><button id="add-evidence" class="text-button">Attach to case <span>→</span></button><small>Claims are analysed but never treated as provider truth.</small></div></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer><span>Financial authority: provider state + recovery policy</span><span>REWIND / EVIDENCE BEFORE ACTION</span></footer>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="settings-dialog"><form method="dialog"><div class="dialog-mark">R//</div><h2>Connection settings</h2><p>Enter the token from your local .env file.<br>It stays in this tab's session storage.</p><label for="token">Dashboard API token</label><input id="token" type="password" autocomplete="off"><div class="dialog-actions"><button class="button outline" value="cancel">Cancel</button><button id="save-token" class="button primary" value="save">Save</button></div></form></dialog>
+  <script src="/static/app.js"></script>
+</body>
+</html>

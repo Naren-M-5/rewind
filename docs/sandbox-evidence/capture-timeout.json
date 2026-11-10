@@ -1,0 +1,52 @@
+{
+  "format": "rewind-verification-v1",
+  "provider": "sandbox",
+  "created_at": "2026-11-02T01:14:40.378952+00:00",
+  "scenario": "capture_timeout",
+  "checks": {
+    "order_created": {
+      "passed": true,
+      "checked_at": "2026-11-02T07:07:30.564665+00:00"
+    },
+    "capture_socket_dropped": {
+      "passed": true,
+      "checked_at": "2026-11-02T07:07:35.082972+00:00",
+      "mode": "drop_after",
+      "upstream_status": 201
+    },
+    "single_capture": {
+      "passed": true,
+      "checked_at": "2026-11-02T07:07:43.509789+00:00",
+      "capture_count": 1,
+      "payment": "captured"
+    },
+    "live_ai": {
+      "passed": true,
+      "checked_at": "2026-11-02T07:07:47.522331+00:00",
+      "provider": "ollama",
+      "model": "qwen3:8b",
+      "latency_ms": 229656,
+      "recommendation": "redeliver",
+      "conflict_type": "delivery_gap",
+      "evidence_ids": [
+        13,
+        17,
+        19
+      ]
+    },
+    "recovery": {
+      "passed": true,
+      "checked_at": "2026-11-02T07:07:52.797202+00:00",
+      "payment": "captured",
+      "delivery": "delivered",
+      "receipt_id": "RCPT-2a8628b51daa4d51967951dab7c7f637",
+      "action": "none"
+    }
+  },
+  "complete": true,
+  "task_id": "ac739c576f044813a6a25c65809146a0",
+  "order_id": "6H6738524Y112983E",
+  "capture_id": "73103012R9652494P",
+  "refund_id": null,
+  "finished_at": "2026-11-02T07:07:52.797202+00:00"
+}

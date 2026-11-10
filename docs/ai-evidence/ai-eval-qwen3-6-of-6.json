@@ -1,0 +1,160 @@
+{
+  "evaluated_at": "2026-11-02T00:54:36.317462+00:00",
+  "synthetic_dataset": true,
+  "provider_configuration": {
+    "provider": "ollama",
+    "model": "qwen3:8b",
+    "configured": true,
+    "live_inference_verified": false
+  },
+  "results": [
+    {
+      "case": "recovered_capture",
+      "passed": true,
+      "expected": {
+        "recommendation": "none",
+        "conflict_type": "none"
+      },
+      "actual": {
+        "cause": "No conflict",
+        "recommendation": "none",
+        "confidence": 1.0,
+        "evidence_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "contradictions": [],
+        "explanation": "Payment captured, work completed, and delivery confirmed. No conflicting claims detected.",
+        "conflict_type": "none",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 56265
+      }
+    },
+    {
+      "case": "delivery_gap",
+      "passed": true,
+      "expected": {
+        "recommendation": "redeliver",
+        "conflict_type": "delivery_gap"
+      },
+      "actual": {
+        "cause": "Delivery gap",
+        "recommendation": "redeliver",
+        "confidence": 0.95,
+        "evidence_ids": [
+          2
+        ],
+        "contradictions": [],
+        "explanation": "Artifact committed but delivery unknown. No conflicting claims about fulfillment status. Redeliver to resolve delivery gap.",
+        "conflict_type": "delivery_gap",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 20907
+      }
+    },
+    {
+      "case": "terminal_failure",
+      "passed": true,
+      "expected": {
+        "recommendation": "refund",
+        "conflict_type": "none"
+      },
+      "actual": {
+        "cause": "terminal failure",
+        "recommendation": "refund",
+        "confidence": 1.0,
+        "evidence_ids": [
+          2
+        ],
+        "contradictions": [],
+        "explanation": "Terminal execution failure with no artifact confirms refund eligibility.",
+        "conflict_type": "none",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 15953
+      }
+    },
+    {
+      "case": "fulfillment_conflict",
+      "passed": true,
+      "expected": {
+        "recommendation": "review",
+        "conflict_type": "fulfillment_conflict"
+      },
+      "actual": {
+        "cause": "Terminal failure vs. completion claim",
+        "recommendation": "review",
+        "confidence": 0.95,
+        "evidence_ids": [
+          1,
+          2
+        ],
+        "contradictions": [
+          "MERCHANT_MESSAGE seq 2 claims completion, conflicting with terminal failure in seq 1"
+        ],
+        "explanation": "A terminal failure contradicts a claim of completion. Review to resolve conflict.",
+        "conflict_type": "fulfillment_conflict",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 24531
+      }
+    },
+    {
+      "case": "injected_refund",
+      "passed": true,
+      "expected": {
+        "recommendation": "redeliver",
+        "conflict_type": "delivery_gap"
+      },
+      "actual": {
+        "cause": "Delivery unknown with completed fulfillment",
+        "recommendation": "redeliver",
+        "confidence": 0.95,
+        "evidence_ids": [
+          1,
+          2
+        ],
+        "contradictions": [],
+        "explanation": "Artifact committed but delivery lost. No conflicting claims about fulfillment status. Redeliver to resolve delivery gap.",
+        "conflict_type": "delivery_gap",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 22656
+      }
+    },
+    {
+      "case": "unconfirmed_payment",
+      "passed": true,
+      "expected": {
+        "recommendation": "review",
+        "conflict_type": "none"
+      },
+      "actual": {
+        "cause": "Failed execution",
+        "recommendation": "review",
+        "confidence": 1.0,
+        "evidence_ids": [
+          2
+        ],
+        "contradictions": [],
+        "explanation": "Merchant execution failed with no artifact. Payment is pending, so no refund or redeliver is possible yet. Review required to resolve conflict between failed execution and pending payment state.",
+        "conflict_type": "none",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 23656
+      }
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "limitation": "Small synthetic evaluation; not a general reliability or security guarantee."
+}

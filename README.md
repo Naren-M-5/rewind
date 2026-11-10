@@ -1,31 +1,68 @@
 # REWIND
 
-**Task-level recovery for agentic commerce.** When an agent receives a timeout, REWIND checks what actually happened across payment, merchant execution, and delivery before permitting a recovery action.
+<p align="center">
+  <strong>Evidence-first recovery for ambiguous PayPal transactions.</strong><br>
+  Reconcile payment, merchant execution, and delivery before taking financial action.
+</p>
 
-An API retry key protects a request. REWIND gives one business task a durable identity across the whole purchase. It uses PayPal's idempotency rather than claiming to replace it.
+<p align="center">
+  <a href="https://github.com/Naren-M-5/rewind/actions/workflows/tests.yml"><img alt="Recovery tests" src="https://github.com/Naren-M-5/rewind/actions/workflows/tests.yml/badge.svg"></a>
+  <img alt="Python 3.11 and 3.12" src="https://img.shields.io/badge/Python-3.11%20%7C%203.12-3776AB?logo=python&logoColor=white">
+  <img alt="PayPal Sandbox" src="https://img.shields.io/badge/PayPal-Sandbox-003087?logo=paypal&logoColor=white">
+  <img alt="Live AI evaluation 6 of 6" src="https://img.shields.io/badge/Live_AI_Eval-6%2F6-18A558">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-7B61FF"></a>
+</p>
 
-## Current build status
+> **Evidence before action.** A timeout is not proof that a payment failed. REWIND reconstructs the outcome and blocks unsafe retries before they create a duplicate charge.
 
-This is a runnable, evidence-backed hackathon prototype. Repository publication, a public demo video, and the final Devpost submission remain outstanding.
+**[Quick start](#quick-start) · [Architecture](#architecture) · [Recovery scenarios](#recovery-scenarios) · [PayPal Sandbox](#connect-paypal-sandbox) · [AI investigation](#ai-investigation) · [Verification](#evidence-and-verification)**
+
+## Why REWIND
+
+API idempotency protects an individual request. A commerce recovery decision spans more than one request: payment state, merchant work, and buyer delivery can disagree. REWIND gives that complete business task a durable identity, records an evidence timeline, and applies a conservative recovery policy.
+
+- **Reconcile first:** authoritative PayPal state is read before any capture or refund decision.
+- **Investigate with AI:** structured model output classifies conflicts and cites existing evidence IDs.
+- **Keep money deterministic:** AI can stop an unsafe action, but verified state and policy authorize recovery.
+- **Recover exactly once:** stable operation IDs and task-level guards prevent duplicate captures and refunds.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    T["Durable commerce task"] --> E["Append-only evidence journal"]
+    P["PayPal provider state"] --> E
+    M["Merchant work + delivery proof"] --> E
+    E --> A["Schema-validated AI diagnosis"]
+    A --> R["Deterministic recovery policy"]
+    R --> O["Redeliver · Refund · Review"]
+```
+
+The AI layer interprets evidence. It has no payment credentials or financial tools. PayPal reads and deterministic policy remain authoritative.
+
+## Verified build
+
+This repository contains a runnable, evidence-backed prototype.
 
 | Capability | Status |
 | --- | --- |
 | Three end-to-end recovery scenarios | Verified locally and with real PayPal Sandbox payment objects |
-| Judge-ready dashboard, timeline, evidence export, recovered artifact download | Implemented |
+| Investigation dashboard, timeline, evidence export, recovered artifact download | Implemented |
 | Durable operations, stable request IDs, restart recovery | Tested |
 | PayPal sandbox Orders, buyer approval, capture, authoritative reads, refunds | Three credentials-backed scenarios passed; redacted reports included |
 | PayPal webhook signature verification and event deduplication | Implemented; real sandbox webhook delivery not yet verified |
 | Hosted AI (OpenAI Responses / compatible Chat Completions) and Ollama | Implemented; unchanged six-case suite passed 6/6 with live local Ollama inference |
 | Socket fault proxy, buyer receipt verification, redacted judge replay | Implemented and tested locally |
 | AI recommendation overridden by deterministic policy | Tested with a visibly labeled recorded fixture |
-| Disputes API integration | Not implemented; stretch scope |
-| Public repository, hosted deployment, submission video | Still to complete |
+| GitHub Actions | Passing on Python 3.11 and 3.12 |
 
 Payment mode defaults to the emulator. **AI defaults to a live provider**, requiring your model name and API key; missing configuration is reported as unavailable, never silently replaced by a fixture. The explicit `--rehearsal` command below selects emulator payments and recorded AI. It still runs a separate merchant and buyer inbox over real HTTP.
 
-**v0.2 verification: 57 tests pass.** The unchanged six-case evaluator passed **6/6** with Ollama 0.40.10 and `qwen3:8b`. All three core scenarios passed with real PayPal Sandbox orders, captures, and—in the terminal-failure scenario—a provider-confirmed refund. Redacted verification reports are committed under `docs/sandbox-evidence/`. Webhook delivery, hosted deployment, repository publication, video upload, and the final submission are not claimed as complete.
+**v0.2 verification: 57 tests pass.** The unchanged six-case evaluator passed **6/6** with Ollama 0.40.10 and `qwen3:8b`. All three core scenarios passed with real PayPal Sandbox orders, captures, and—in the terminal-failure scenario—a provider-confirmed refund. Redacted verification reports are committed under `docs/sandbox-evidence/`. GitHub Actions passes on Python 3.11 and 3.12. Real webhook delivery and hosted deployment are not claimed as complete.
 
-## Quick start — Windows PowerShell
+## Quick start
+
+### Windows PowerShell
 
 Requires Python 3.11 or newer. Extract this folder, then open PowerShell inside it.
 
@@ -44,7 +81,7 @@ Run tests in another terminal:
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-On Linux/macOS:
+### Linux and macOS
 
 ```bash
 python3 -m venv .venv
@@ -53,11 +90,11 @@ cp .env.example .env
 .venv/bin/python -m rewind.devstack --rehearsal
 ```
 
-The launcher starts the dashboard (8000), merchant (8011), buyer inbox (8012), and fault proxy (8013). Ctrl+C stops them together. Keep these ports available. Service logs are in `logs/`. The stack, test suite, live Ollama evaluation, and three core Sandbox scenarios were run on Windows; see `docs/CURRENT_STATUS.md`.
+The launcher starts the dashboard (8000), merchant (8011), buyer inbox (8012), and fault proxy (8013). Ctrl+C stops them together. Keep these ports available. Service logs are in `logs/`. The stack, test suite, live Ollama evaluation, and three core Sandbox scenarios were run on Windows; see `docs/VERIFICATION.md`.
 
 Use **one uvicorn worker per service**. This prototype's in-process task locks do not coordinate multiple workers or replicas.
 
-## The three scenarios
+## Recovery scenarios
 
 | Scenario | Failure | Correct response |
 | --- | --- | --- |
@@ -110,7 +147,9 @@ Do not use the webhook simulator as proof of a real capture integration. Verify 
 
 There is deliberately no live-payment base URL.
 
-## Configure live AI
+## AI investigation
+
+### Configure a live model
 
 Store credentials only in your local `.env`. Never send account passwords, API secrets, or buyer credentials in chat or commit them. A hosted provider needs an API key with inference access; use your chosen provider's own account and model identifier.
 
@@ -133,7 +172,7 @@ Run the six-case evaluation with your configured model:
 python -m rewind.evaluate_ai --output local-runs/ai-eval.json
 ```
 
-This checks recovered payment, delivery gap, true failure, conflicting merchant state, prompt injection, and pending payment. It records diagnosis, expected classification, latency, and pass count. The unchanged suite passed **6/6** with Ollama 0.40.10 and `qwen3:8b`; the report is preserved at `docs/ai-evidence/ai-eval-qwen3-6-of-6.json`. Fixture mode deliberately proposes a refund for a completed artifact so the policy override can be rehearsed; label that recommendation as injected in any video.
+This checks recovered payment, delivery gap, true failure, conflicting merchant state, prompt injection, and pending payment. It records diagnosis, expected classification, latency, and pass count. The unchanged suite passed **6/6** with Ollama 0.40.10 and `qwen3:8b`; the report is preserved at `docs/ai-evidence/ai-eval-qwen3-6-of-6.json`. Fixture mode deliberately proposes a refund for a completed artifact so the policy override can be rehearsed; the UI labels recorded fixture findings explicitly.
 
 ## Verify real sandbox runs
 
@@ -159,7 +198,7 @@ python -m uvicorn rewind.replay:create_replay --factory --host 127.0.0.1 --port 
 
 Stop the regular stack before using its port. A redacted replay of the three verified runs is included at `docs/judge-replay.json`. It removes free-text messages, artifact contents, and approval URLs. It retains recorded sandbox IDs and labels the display **read-only recorded evidence**, not current provider verification. Its app instantiates no payment or AI adapter and exposes no mutation endpoints.
 
-A hosted replay can be public without buyer credentials or a dashboard token. Hosting has not been completed. Give judges this replay plus the source and complete local instructions; the replay alone is not a live sandbox integration. The bundled file was exported from the local Sandbox database and passed the release redaction checks.
+A hosted replay can be public without buyer credentials or a dashboard token. Hosting has not been completed. The replay can be used with the source and local instructions; it is recorded evidence, not a live sandbox integration. The bundled file was exported from the local Sandbox database and passed the release redaction checks.
 
 ## Safety boundaries and limits
 
@@ -175,15 +214,14 @@ A hosted replay can be public without buyer credentials or a dashboard token. Ho
 - The API uses a shared dashboard token, not production multi-user authentication. `.env` and database files are excluded from source control.
 - `REWIND_CHAOS=false` disables task creation and demo-merchant/fault controls. It does not turn the prototype into a production service.
 
-## Build and submission checklist
+## Evidence and verification
 
-See [CURRENT_STATUS.md](docs/CURRENT_STATUS.md), [VERIFICATION.md](docs/VERIFICATION.md), [RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md), [PUBLISH_REPO.md](docs/PUBLISH_REPO.md), [SANDBOX_SPIKE.md](docs/SANDBOX_SPIKE.md), [DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md), and the prepared [Devpost submission copy](docs/DEVPOST_SUBMISSION.md).
+See [VERIFICATION.md](docs/VERIFICATION.md), [SANDBOX_SPIKE.md](docs/SANDBOX_SPIKE.md), the redacted [judge replay](docs/judge-replay.json), and the scenario reports under [`docs/sandbox-evidence/`](docs/sandbox-evidence/).
 
-Before submitting: export and review the read-only judge replay, publish the repository with this license, confirm CI from a clean checkout, provide complete judge access, and record a public YouTube video under three minutes. Real webhook delivery remains an explicitly documented limitation. Dispute export in this build is a local JSON package; no evidence is submitted to PayPal.
+The read-only judge replay and redacted scenario reports are committed, and CI passes from a clean checkout. Real webhook delivery remains an explicitly documented limitation. Dispute export in this build is a local JSON package; no evidence is submitted to PayPal.
 
 ## Primary references
 
-- [Hackathon official rules](https://paypalaihackathon.devpost.com/rules)
 - [PayPal idempotency](https://developer.paypal.com/api/rest/reference/idempotency/)
 - [Orders v2](https://developer.paypal.com/api/orders/v2)
 - [Payments v2](https://developer.paypal.com/api/payments/v2)

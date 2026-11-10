@@ -1,0 +1,706 @@
+{
+  "format": "rewind-replay-v1",
+  "exported_at": "2026-11-10T15:43:59.675683+00:00",
+  "disclosure": "Recorded task snapshots, not live provider verification. Free text, artifacts, and approval URLs are removed.",
+  "tasks": [
+    {
+      "id": "ac739c576f044813a6a25c65809146a0",
+      "scenario": "capture_timeout",
+      "created": "2026-11-02T01:14:40.711040+00:00",
+      "amount": "50.00",
+      "provider": "sandbox",
+      "payment": "captured",
+      "fulfillment": "completed",
+      "delivery": "delivered",
+      "order_id": "6H6738524Y112983E",
+      "capture_id": "73103012R9652494P",
+      "refund_id": null,
+      "contradiction": false,
+      "last_verified": "2026-11-02T07:07:52.202024+00:00",
+      "merchant_mode": "http",
+      "receipt_id": "RCPT-2a8628b51daa4d51967951dab7c7f637",
+      "delivery_gap": false,
+      "conflict_kind": "none",
+      "capture_count": 1,
+      "artifact_hash": "6558725718a2c55ef4e02b4b07516fa8d4d1c1895e14dc1fd6a170cf4a6dca53",
+      "diagnosis": {
+        "recommendation": "redeliver",
+        "confidence": 1.0,
+        "evidence_ids": [
+          13,
+          17,
+          19
+        ],
+        "conflict_type": "delivery_gap",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 229656,
+        "cause": "Recorded diagnosis",
+        "explanation": "Free-text evidence and diagnosis details are redacted in this public replay.",
+        "contradictions": []
+      },
+      "decision": {
+        "action": "none",
+        "ai_overridden": true,
+        "reason": "Recorded policy result; this replay cannot execute it."
+      },
+      "events": [
+        {
+          "seq": 1,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "TASK_CREATED",
+          "source": "user",
+          "time": "2026-11-02T01:14:40.711040+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 2,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "ORDER_CREATED",
+          "source": "sandbox",
+          "time": "2026-11-02T01:14:43.909978+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E"
+          }
+        },
+        {
+          "seq": 3,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:01:45.750226+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 4,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_REQUESTED",
+          "source": "agent",
+          "time": "2026-11-02T04:01:45.750226+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 5,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_UNCERTAIN",
+          "source": "transport",
+          "time": "2026-11-02T04:01:48.824621+00:00",
+          "detail": {
+            "fault_requested": true,
+            "fault_mode": "socket_proxy"
+          }
+        },
+        {
+          "seq": 6,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:05:12.734848+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 7,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:05:47.275443+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 8,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_REQUESTED",
+          "source": "agent",
+          "time": "2026-11-02T04:05:47.275443+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 9,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_UNCERTAIN",
+          "source": "transport",
+          "time": "2026-11-02T04:05:51.345474+00:00",
+          "detail": {
+            "fault_requested": true,
+            "fault_mode": "socket_proxy"
+          }
+        },
+        {
+          "seq": 10,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:32:56.848454+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 11,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_REQUESTED",
+          "source": "agent",
+          "time": "2026-11-02T04:32:56.848454+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 12,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "CAPTURE_UNCERTAIN",
+          "source": "transport",
+          "time": "2026-11-02T04:33:01.485097+00:00",
+          "detail": {
+            "fault_requested": true,
+            "fault_mode": "socket_proxy"
+          }
+        },
+        {
+          "seq": 13,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:33:07.071123+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 14,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "DUPLICATE_INTENT_BLOCKED",
+          "source": "policy",
+          "time": "2026-11-02T04:33:07.074794+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 15,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:33:12.492430+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 16,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T04:33:15.166357+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 17,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "ARTIFACT_COMMITTED",
+          "source": "merchant_http",
+          "time": "2026-11-02T04:33:16.097508+00:00",
+          "detail": {
+            "sha256": "6558725718a2c55ef4e02b4b07516fa8d4d1c1895e14dc1fd6a170cf4a6dca53"
+          }
+        },
+        {
+          "seq": 19,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "DELIVERY_ACKNOWLEDGED",
+          "source": "buyer_inbox",
+          "time": "2026-11-02T04:33:17.582419+00:00",
+          "detail": {
+            "receipt_id": "RCPT-2a8628b51daa4d51967951dab7c7f637",
+            "http_transport": true
+          }
+        },
+        {
+          "seq": 20,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "AI_DIAGNOSIS",
+          "source": "ai",
+          "time": "2026-11-02T04:37:07.239835+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 21,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T07:07:34.803661+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 22,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "DUPLICATE_INTENT_BLOCKED",
+          "source": "policy",
+          "time": "2026-11-02T07:07:34.803661+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 23,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T07:07:38.935962+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 24,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "DUPLICATE_INTENT_BLOCKED",
+          "source": "policy",
+          "time": "2026-11-02T07:07:38.935962+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 25,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T07:07:43.509789+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 26,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T07:07:46.966751+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 28,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-02T07:07:52.205165+00:00",
+          "detail": {
+            "order_id": "6H6738524Y112983E",
+            "capture_id": "73103012R9652494P",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 30,
+          "task_id": "ac739c576f044813a6a25c65809146a0",
+          "kind": "POLICY_OVERRIDE",
+          "source": "policy",
+          "time": "2026-11-02T07:07:52.793200+00:00",
+          "detail": {
+            "action": "none",
+            "ai_overridden": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "585d50384af0418ab8acde0091b77b1a",
+      "scenario": "delivery_loss",
+      "created": "2026-11-06T12:51:26.616393+00:00",
+      "amount": "50.00",
+      "provider": "sandbox",
+      "payment": "captured",
+      "fulfillment": "completed",
+      "delivery": "delivered",
+      "order_id": "21F550128P529460J",
+      "capture_id": "71610325F0031091K",
+      "refund_id": null,
+      "contradiction": false,
+      "last_verified": "2026-11-06T13:19:46.015319+00:00",
+      "merchant_mode": "http",
+      "receipt_id": "RCPT-9414d21cad024e9a83499c6f19494c2f",
+      "delivery_gap": false,
+      "conflict_kind": "none",
+      "capture_count": 1,
+      "artifact_hash": "37b95708f3e9e936430e4a58bf99e813e9786b74288f97a1af784dd211bc85bc",
+      "diagnosis": {
+        "recommendation": "redeliver",
+        "confidence": 0.95,
+        "evidence_ids": [
+          41,
+          43
+        ],
+        "conflict_type": "none",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 136125,
+        "cause": "Recorded diagnosis",
+        "explanation": "Free-text evidence and diagnosis details are redacted in this public replay.",
+        "contradictions": []
+      },
+      "decision": {
+        "action": "redeliver",
+        "ai_overridden": false,
+        "reason": "Recorded policy result; this replay cannot execute it."
+      },
+      "events": [
+        {
+          "seq": 33,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "TASK_CREATED",
+          "source": "user",
+          "time": "2026-11-06T12:51:26.616393+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 34,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "ORDER_CREATED",
+          "source": "sandbox",
+          "time": "2026-11-06T12:51:29.809155+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J"
+          }
+        },
+        {
+          "seq": 35,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:17:01.793673+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 36,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "CAPTURE_REQUESTED",
+          "source": "agent",
+          "time": "2026-11-06T13:17:01.793673+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 37,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "CAPTURE_ACKNOWLEDGED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:17:06.178655+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J"
+          }
+        },
+        {
+          "seq": 38,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:17:11.924299+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J",
+            "capture_id": "71610325F0031091K",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 39,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:17:17.455374+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J",
+            "capture_id": "71610325F0031091K",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 40,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:17:22.920665+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J",
+            "capture_id": "71610325F0031091K",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 41,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "ARTIFACT_COMMITTED",
+          "source": "merchant_http",
+          "time": "2026-11-06T13:17:23.419335+00:00",
+          "detail": {
+            "sha256": "37b95708f3e9e936430e4a58bf99e813e9786b74288f97a1af784dd211bc85bc"
+          }
+        },
+        {
+          "seq": 43,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "DELIVERY_LOST",
+          "source": "buyer_inbox",
+          "time": "2026-11-06T13:17:24.297887+00:00",
+          "detail": {
+            "receipt_id": null,
+            "http_transport": true
+          }
+        },
+        {
+          "seq": 44,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "AI_DIAGNOSIS",
+          "source": "ai",
+          "time": "2026-11-06T13:19:40.430790+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 45,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:19:46.020676+00:00",
+          "detail": {
+            "order_id": "21F550128P529460J",
+            "capture_id": "71610325F0031091K",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 47,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "POLICY_DECISION",
+          "source": "policy",
+          "time": "2026-11-06T13:19:46.657792+00:00",
+          "detail": {
+            "action": "redeliver",
+            "ai_overridden": false
+          }
+        },
+        {
+          "seq": 49,
+          "task_id": "585d50384af0418ab8acde0091b77b1a",
+          "kind": "RESULT_REDELIVERED",
+          "source": "buyer_inbox",
+          "time": "2026-11-06T13:19:47.330879+00:00",
+          "detail": {
+            "sha256": "37b95708f3e9e936430e4a58bf99e813e9786b74288f97a1af784dd211bc85bc",
+            "receipt_id": "RCPT-9414d21cad024e9a83499c6f19494c2f",
+            "http_transport": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "8fb5df64333c4459b01836bb9857d378",
+      "scenario": "true_failure",
+      "created": "2026-11-06T13:25:51.596758+00:00",
+      "amount": "50.00",
+      "provider": "sandbox",
+      "payment": "refunded",
+      "fulfillment": "failed",
+      "delivery": "pending",
+      "order_id": "21G26665GE641912S",
+      "capture_id": "76F00363PD164201V",
+      "refund_id": "7J742709AW826572J",
+      "contradiction": false,
+      "last_verified": "2026-11-06T13:29:24.587265+00:00",
+      "merchant_mode": "http",
+      "receipt_id": null,
+      "delivery_gap": false,
+      "conflict_kind": "none",
+      "capture_count": 1,
+      "artifact_hash": null,
+      "diagnosis": {
+        "recommendation": "refund",
+        "confidence": 1.0,
+        "evidence_ids": [
+          58
+        ],
+        "conflict_type": "none",
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "live_ai": true,
+        "latency_ms": 60344,
+        "cause": "Recorded diagnosis",
+        "explanation": "Free-text evidence and diagnosis details are redacted in this public replay.",
+        "contradictions": []
+      },
+      "decision": {
+        "action": "refund",
+        "ai_overridden": false,
+        "reason": "Recorded policy result; this replay cannot execute it."
+      },
+      "events": [
+        {
+          "seq": 50,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "TASK_CREATED",
+          "source": "user",
+          "time": "2026-11-06T13:25:51.598764+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 51,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "ORDER_CREATED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:25:55.176966+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S"
+          }
+        },
+        {
+          "seq": 52,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:27:36.997553+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S",
+            "capture_id": null,
+            "payment": "created"
+          }
+        },
+        {
+          "seq": 53,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "CAPTURE_REQUESTED",
+          "source": "agent",
+          "time": "2026-11-06T13:27:36.997553+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 54,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "CAPTURE_ACKNOWLEDGED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:27:41.601517+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S"
+          }
+        },
+        {
+          "seq": 55,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:28:05.259738+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S",
+            "capture_id": "76F00363PD164201V",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 56,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:28:11.978764+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S",
+            "capture_id": "76F00363PD164201V",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 57,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:28:18.024337+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S",
+            "capture_id": "76F00363PD164201V",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 58,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "MERCHANT_EXECUTION_FAILED",
+          "source": "merchant_http",
+          "time": "2026-11-06T13:28:18.363954+00:00",
+          "detail": {
+            "terminal": true
+          }
+        },
+        {
+          "seq": 59,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "AI_DIAGNOSIS",
+          "source": "ai",
+          "time": "2026-11-06T13:29:18.715120+00:00",
+          "detail": {}
+        },
+        {
+          "seq": 60,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "STATE_RECONCILED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:29:24.587265+00:00",
+          "detail": {
+            "order_id": "21G26665GE641912S",
+            "capture_id": "76F00363PD164201V",
+            "payment": "captured"
+          }
+        },
+        {
+          "seq": 62,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "POLICY_DECISION",
+          "source": "policy",
+          "time": "2026-11-06T13:29:25.264452+00:00",
+          "detail": {
+            "action": "refund",
+            "ai_overridden": false
+          }
+        },
+        {
+          "seq": 63,
+          "task_id": "8fb5df64333c4459b01836bb9857d378",
+          "kind": "REFUND_COMPLETED",
+          "source": "sandbox",
+          "time": "2026-11-06T13:29:29.392097+00:00",
+          "detail": {
+            "refund_id": "7J742709AW826572J",
+            "status": "COMPLETED"
+          }
+        }
+      ]
+    }
+  ]
+}
